@@ -9,9 +9,9 @@ SCSS ou SASS sont des préprocesseurs. C'est comme du css classique, à quelques
 Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs choses :
 
 - L'imbrication du code :
-    - Plutôt que de devoir répéter à chaque fois les mêmes classes/type de section, on peut directement l'imbriquer dans la grande section.
+  - Plutôt que de devoir répéter à chaque fois les mêmes classes/type de section, on peut directement l'imbriquer dans la grande section.
 
-    - Cela permet également une plus grande lisibilité du code (possibilité de réduire directement toute la classe plutôt que de devoir réduire un à un les morceaux de code)
+  - Cela permet également une plus grande lisibilité du code (possibilité de réduire directement toute la classe plutôt que de devoir réduire un à un les morceaux de code)
 
 ```scss
 .nav {
@@ -23,7 +23,7 @@ Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs chos
 ```
 
 - Gain de temps garanti :
-    - Avec les variables, mixins, fonctions et autres fonctionnalités du SCSS, on gagne un temps fou à ne pas être obligé de changer chaque couleur, chaque typo, chaque taille de texte (ou même un bloc de code complet) à la main, on change une seule fois et le tour est joué. (Exemples à suivre dans les différentes parties)
+  - Avec les variables, mixins, fonctions et autres fonctionnalités du SCSS, on gagne un temps fou à ne pas être obligé de changer chaque couleur, chaque typo, chaque taille de texte (ou même un bloc de code complet) à la main, on change une seule fois et le tour est joué. (Exemples à suivre dans les différentes parties)
 
 # 2. Méthode BEM
 
@@ -162,10 +162,11 @@ Vous l'aurez compris, 7-1 veut dire 7 dossiers - 1 fichier principal.
 La syntaxe SCSS est assez simple, elle ne change pas beaucoup de celle du CSS classique.
 
 Les points importants à noter sont :
+
 - Ne pas oublier les @ devant les directives.
-    - @use, @for (pareil pour les autres boucles), @mixin etc.
+  - @use, @for (pareil pour les autres boucles), @mixin etc.
 - Ne pas oublier les $ devant les variables, sinon ça ne marche pas.
-- Ne pas oublier les & devant les __ ou -- etc des appels imbriqués (exemple dans la partie 2. Méthode BEM)
+- Ne pas oublier les & devant les \_\_ ou -- etc des appels imbriqués (exemple dans la partie 2. Méthode BEM)
 
 # 7. Les variables
 
@@ -173,7 +174,7 @@ Les points importants à noter sont :
 
 Une variable, que ce soit en SCSS ou dans n'importe quel langage de code, est une valeur que l'on place dans un "contenant" nommé comme on le souhaite qui, comme son nom l'indique, peut varier.
 
-Il faut noter une chose importante : 
+Il faut noter une chose importante :
 
 - La variable **DOIT** être précédé d'un $.
 
@@ -181,13 +182,14 @@ Il faut noter une chose importante :
 $rouge: red;
 
 .error {
-    color: $rouge;
+	color: $rouge;
 }
-``` 
+```
 
 ## Mais à quoi ça sert ?
 
 Les variables servent à plusieurs choses, dedans on peut stocker plus ou moins ce qu'on veut :
+
 - Couleur
 - Taille de police
 - Épaisseur de police
@@ -210,13 +212,13 @@ Pour créer un mixin on utilise le @mixin, et pour l'appeler on utilise le @incl
 
 ```scss
 @mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .cards {
-    @include flex-center
+	@include flex-center;
 }
 ```
 
@@ -224,19 +226,118 @@ Il y a quand même une petite particularité avec les mixins, on peut leur donne
 
 ```scss
 @mixin flex-center($direction) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: $direction;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $direction;
 }
 
 .cards {
-    @include flex-center(column)
+	@include flex-center(column);
 }
-``` 
+```
 
 Ici par exemple, nos cards seront en colones grâce à cet argument.
 
 Voici un exemple concret de l'utilisation des mixins (qui ici ne sert à rien car toutes de la même couleur)
 
 [image code cards](./code.png)
+
+# 9. Les fonctions
+
+## Qu'est-ce qu'une fonction ?
+
+En SCSS une fonction n'est pas bien différente des autres langages, elle renvoie une valeur.
+
+Sa syntaxe est assez simple, elle commence par @function puis on lui donne un nom est un/des paramètre(s) et enfin on écrit à l'intérieur des accolades la fonction sans oublier le @return qui est très important.
+
+Pour l'appeler ce n'est pas plus compliqué, on appelle le nom de la fonction et entre parenthèses son/ses paramètre(s).
+
+```scss
+@function double($n) {
+	@return $n * 2;
+}
+.box {
+	width: double(10px);
+} 
+```
+
+**ATTENTION !**  Il ne faut pas confondre fonction et mixin, une fonction renvoie une valeur et une mixin injecte du code.
+
+# 10. Les collections
+
+## Qu'est-ce qu'une Collection ?
+
+Une collection c'est un ensemble de plusieurs valeurs stocké dans une seule variable.
+
+Et en SCSS il y a deux principaux types de collections, les listes et les maps.
+
+### C'est quoi une liste ?
+
+Une liste c'est une suite de valeur sans clé, juste stockée comme ça.
+
+L'ordre est donc important pour s'y retrouver !
+
+Et pour y accéder on utilise nth().
+
+```scss
+$colors: red, blue, green;
+
+.sky {
+    background: nth($colors, 2);
+}
+```
+
+Ce code va mettre le background de la classe sky en bleu (car oui, les listes en scss commencent à 1 pas à 0).
+
+Et on peut combiner les listes avec les variables !
+
+```scss
+$blue: blue;
+$red: red;
+$green: green;
+
+$colors: $red, $blue, $green;
+
+.sky {
+    background: nth($colors, 2);
+}
+```
+
+### C'est quoi une map ?
+
+Une map c'est une suite avec clé et valeur, ce qui ressemble beaucoup à un dictionnaire.
+
+On y accède avec map-get()
+
+```scss
+$colors: (primary: blue, secondary: red);
+
+.sky {
+    background: map-get($colors, primary);
+}
+```
+
+Ce code va mettre le background de la classe sky en bleu car on appelle la clé primary dont la valeur est "blue".
+
+Et on peut combiner les map avec les variables aussi !
+
+```scss
+$blue: blue;
+$red: red;
+$green: green;
+
+$colors: (primary: $blue, secondary: $red);
+
+.sky {
+    background: map-get($colors, primary);
+}
+```
+
+On peut également combiner les collections avec des boucles ce qui permet par exemple, comme tout à l'heure, de changer les couleurs des cards au fur et à mesure de la boucle qui parcourt la map/list.
+
+# 11. Les boucles
+
+## Qu'est-ce qu'une boucle ?
+
+Une boucles en SCSS est similaire aux boucles dans les autres langages, il en existe plusieurs
