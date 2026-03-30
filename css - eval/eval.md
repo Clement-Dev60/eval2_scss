@@ -239,6 +239,4 @@ Ici par exemple, nos cards seront en colones grâce à cet argument.
 
 Voici un exemple concret de l'utilisation des mixins (qui ici ne sert à rien car toutes de la même couleur)
 
-```md
-![Texte alternatif](./code.png)
-```
+[image code cards](./code.png)
