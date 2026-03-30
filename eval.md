@@ -9,7 +9,7 @@ SCSS ou SASS sont des préprocesseurs. C'est comme du css classique, à quelques
 Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs choses :
 
 - L'imbrication du code :
-- Plutôt que de devoir répéter à chaque fois les mêmes classes/type de section, on peut directement l'imbriquer dans la grande section.
+    - Plutôt que de devoir répéter à chaque fois les mêmes classes/type de section, on peut directement l'imbriquer dans la grande section.
 
 ```scss
 .nav {
@@ -20,10 +20,10 @@ Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs chos
 }
 ```
 
-- Cela permet également une plus grande lisibilité du code (possibilité de réduire directement toute la classe plutôt que de devoir réduire un à un les morceaux de code)
+    - Cela permet également une plus grande lisibilité du code (possibilité de réduire directement toute la classe plutôt que de devoir réduire un à un les morceaux de code)
 
 - Gain de temps garanti :
-- Avec les variables, mixins, fonctions et autres fonctionnalités du SCSS, on gagne un temps fou à ne pas être obligé de changer chaque couleur, chaque typo, chaque taille de texte (ou même un bloc de code complet) à la main, on change une seule fois et le tour est joué. (Exemples à suivre dans les différentes parties)
+    - Avec les variables, mixins, fonctions et autres fonctionnalités du SCSS, on gagne un temps fou à ne pas être obligé de changer chaque couleur, chaque typo, chaque taille de texte (ou même un bloc de code complet) à la main, on change une seule fois et le tour est joué. (Exemples à suivre dans les différentes parties)
 
 # 2. Méthode BEM
 
@@ -163,7 +163,7 @@ La syntaxe SCSS est assez simple, elle ne change pas beaucoup de celle du CSS cl
 
 Les points importants à noter sont :
 - Ne pas oublier les @ devant les directives.
- - @use, @for (pareil pour les autres boucles), @mixin etc.
+    - @use, @for (pareil pour les autres boucles), @mixin etc.
 - Ne pas oublier les $ devant les variables, sinon ça ne marche pas.
 - Ne pas oublier les & devant les __ ou -- etc des appels imbriqués (exemple dans la partie 2. Méthode BEM)
 
