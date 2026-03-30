@@ -198,6 +198,9 @@ Et bien d'autres encore.
 
 L'utilité derrière les variables c'est que, si un jour on veut changer toute la DA du site, plutôt que de devoir changer ligne par ligne là où on a nos couleurs, on doit juste changer la couleur de la variable ce qui prend quelques secondes là où tout changer à la main peut prendre des heures entières (si le site est très connue genre amazon on atteint vite des milliers/dizaines de milliers de lignes de code).
 
+**ATTENTION !** Les variables scss ne sont pas forcément les plus optimisées en fonction de la situation.
+Les variables scss ne sont pas dynamiques et ne changent pas en direct sur le navigateur, donc par exemple pour le darkmode il vaut mieux utiliser les variables root.
+
 # 8. Les mixins
 
 ## Qu'est-ce qu'un mixin ?
