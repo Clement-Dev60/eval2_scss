@@ -34,20 +34,19 @@ En effet, elle demande aux développeurs qui l'utilisent de suivre une certaine 
 
 ```scss
 .nav {
-    position: fixed;
-    
-    &__link {
-        text-decoration: none;
+	position: fixed;
 
-    }
+	&__link {
+		text-decoration: none;
+	}
 }
 
 .card {
-    display: none;
+	display: none;
 
-    &--active {
-        display: block;
-    }
+	&--active {
+		display: block;
+	}
 }
 ```
 
@@ -71,7 +70,7 @@ Pour installer un préprocesseur comme SASS il vous suffit de taper quelques com
 
 ### Tout d'abord vérifier que vous avez node et npm d'installer
 
-``` bash
+```bash
 node -v
 npm -v
 ```
@@ -80,18 +79,17 @@ Si ils ne sont pas installés, allez sur le site officiel de node.js pour instal
 
 ### Ensuite, une fois dans le dossier de votre projet, vous allez faire quelques commandes pour initialiser npm
 
-``` bash
+```bash
 npm init -y
-ou
+# ou
 npm init
 ```
 
 Le -y sert uniquement à passer les demandes dans le terminal pour les valeurs (name etc)
 
-
 ### Pour finir, on installe sass localement pour le projet
 
-``` bash
+```bash
 npm i sass
 ```
 
@@ -111,7 +109,7 @@ Par :
 
 ```json
 "scripts": {
-    "build": "sass --watch assets/scss:assets/css"
+    "build": "sass --watch assets/sass:assets/css"
   },
 ```
 
@@ -130,3 +128,70 @@ sass assets/scss:assets/css
 ```
 
 Mais ça prendra plus de temps que de le faire automatiquement.
+
+# 5. Architecture 7-1
+
+Pour que la dernière partie fonctionne il va falloir suivre cette architecture comme elle suit.
+
+```
+mon-projet/
+└── assets/
+    └── sass/
+        ├── base/
+        ├── utils/
+        ├── layout/
+        ├── components/
+        ├── pages/
+        ├── themes/
+        └── vendors/
+        main.scss
+```
+
+Si vous changez le nom du dossier sass par autre chose, il faut le changer également dans le package.json à la ligne build :
+
+```json
+"scripts": {
+    "build": "sass --watch assets/sass:assets/css"
+  },
+```
+
+Vous l'aurez compris, 7-1 veut dire 7 dossiers - 1 fichier principal.
+
+# 6. Syntaxe SCSS
+
+La syntaxe SCSS est assez simple, elle ne change pas beaucoup de celle du CSS classique.
+
+Les points importants à noter sont :
+- Ne pas oublier les @ devant les directives.
+ - @use, @for (pareil pour les autres boucles), @mixin etc.
+- Ne pas oublier les $ devant les variables, sinon ça ne marche pas.
+- Ne pas oublier les & devant les __ ou -- etc des appels imbriqués (exemple dans la partie 2. Méthode BEM)
+
+# 7. Les variables
+
+## Qu'est-ce qu'une variable ?
+
+Une variable, que ce soit en SCSS ou dans n'importe quel langage de code, est une valeur que l'on place dans un "contenant" nommé comme on le souhaite qui, comme son nom l'indique, peut varier.
+
+Il faut noter une chose importante : 
+
+- La variable **DOIT** être précédé d'un $.
+
+```scss
+$rouge: red;
+
+.error {
+    color: $rouge;
+}
+``` 
+
+## Mais à quoi ça sert ?
+
+Les variables servent à plusieurs choses, dedans on peut stocker plus ou moins ce qu'on veut :
+- Couleur
+- Taille de police
+- Épaisseur de police
+
+Et bien d'autres encore.
+
+L'utilité derrière les variables c'est que, si un jour on veut changer toute la DA du site, plutôt que de devoir changer ligne par ligne là où on a nos couleurs, on doit juste changer la couleur de la variable ce qui prend quelques secondes là où tout changer à la main peut prendre des heures entières (si le site est très connue genre amazon on atteint vite des milliers/dizaines de milliers de lignes de code).
