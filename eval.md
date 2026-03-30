@@ -10,7 +10,6 @@ Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs chos
 
 - L'imbrication du code :
 - Plutôt que de devoir répéter à chaque fois les mêmes classes/type de section, on peut directement l'imbriquer dans la grande section.
-<pre>
 
 ```scss
 .nav {
@@ -20,8 +19,6 @@ Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs chos
 	}
 }
 ```
-
- </pre>
 
 - Cela permet également une plus grande lisibilité du code (possibilité de réduire directement toute la classe plutôt que de devoir réduire un à un les morceaux de code)
 
@@ -35,7 +32,6 @@ Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs chos
 La méthode BEM (Bloc\_\_Element--Modifier) est une convention de nommage en SCSS.
 En effet, elle demande aux développeurs qui l'utilisent de suivre une certaine façon de coder. Un bloc sera une "section", une nav par exemple, puis un element sera une partie de cette nav, un lien par exemple, et enfin le modifier sera quelque chose qui permet de savoir si l'élément/le bloc est modifié d'une quelconque manière, par exemple --active pour une card ou autre chose du style.
 
-<pre>
 ```scss
 .nav {
     position: fixed;
@@ -54,7 +50,6 @@ En effet, elle demande aux développeurs qui l'utilisent de suivre une certaine 
     }
 }
 ```
-</pre>
 
 ## Pourquoi l'utiliser ?
 
@@ -76,35 +71,29 @@ Pour installer un préprocesseur comme SASS il vous suffit de taper quelques com
 
 ### Tout d'abord vérifier que vous avez node et npm d'installer
 
-<pre>
 ``` bash
 node -v
 npm -v
 ```
-</pre>
 
 Si ils ne sont pas installés, allez sur le site officiel de node.js pour installer tout ça.
 
 ### Ensuite, une fois dans le dossier de votre projet, vous allez faire quelques commandes pour initialiser npm
 
-<pre>
 ``` bash
 npm init -y
 ou
 npm init
 ```
-</pre>
 
 Le -y sert uniquement à passer les demandes dans le terminal pour les valeurs (name etc)
 
 
 ### Pour finir, on installe sass localement pour le projet
 
-<pre>
 ``` bash
 npm i sass
 ```
-</pre>
 
 ## Package manager
 
@@ -112,40 +101,32 @@ Suite à l'installation, vous aurez un fichier package.json.
 
 Rendez vous dans ce fichier et modifier cette ligne :
 
-<pre>
 ```json
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 ```
-</pre>
 
 Par :
 
-<pre>
 ```json
 "scripts": {
     "build": "sass --watch assets/scss:assets/css"
   },
 ```
-</pre>
 
 Ainsi, quand vous lancerez la commande :
 
-<pre>
 ```bash
 npm run build
 ```
-</pre>
 
 Votre SCSS se compilera tout seul à chaque changement en CSS.
 
 Vous pouvez également le faire à la main à chaque changement avec la commande :
 
-<pre>
 ```bash
 sass assets/scss:assets/css
 ```
-</pre>
 
 Mais ça prendra plus de temps que de le faire automatiquement.
