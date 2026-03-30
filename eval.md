@@ -11,6 +11,8 @@ Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs chos
 - L'imbrication du code :
     - Plutôt que de devoir répéter à chaque fois les mêmes classes/type de section, on peut directement l'imbriquer dans la grande section.
 
+    - Cela permet également une plus grande lisibilité du code (possibilité de réduire directement toute la classe plutôt que de devoir réduire un à un les morceaux de code)
+
 ```scss
 .nav {
 	position: fixed;
@@ -19,8 +21,6 @@ Le SCSS, l'utiliser c'est l'adopter. Il nous simplifie la vie par plusieurs chos
 	}
 }
 ```
-
-    - Cela permet également une plus grande lisibilité du code (possibilité de réduire directement toute la classe plutôt que de devoir réduire un à un les morceaux de code)
 
 - Gain de temps garanti :
     - Avec les variables, mixins, fonctions et autres fonctionnalités du SCSS, on gagne un temps fou à ne pas être obligé de changer chaque couleur, chaque typo, chaque taille de texte (ou même un bloc de code complet) à la main, on change une seule fois et le tour est joué. (Exemples à suivre dans les différentes parties)
