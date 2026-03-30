@@ -195,3 +195,50 @@ Les variables servent à plusieurs choses, dedans on peut stocker plus ou moins 
 Et bien d'autres encore.
 
 L'utilité derrière les variables c'est que, si un jour on veut changer toute la DA du site, plutôt que de devoir changer ligne par ligne là où on a nos couleurs, on doit juste changer la couleur de la variable ce qui prend quelques secondes là où tout changer à la main peut prendre des heures entières (si le site est très connue genre amazon on atteint vite des milliers/dizaines de milliers de lignes de code).
+
+# 8. Les mixins
+
+## Qu'est-ce qu'un mixin ?
+
+Un mixin en SCSS c'est l'équivalent d'un "template" de code.
+
+C'est un patern qu'on va créer avec un nom qui nous permet de l'appeler quand on veut pour éviter d'écrire plusieurs fois les mêmes lignes et gagner du temps/des lignes de code.
+
+En général il est utilisé pour des paterns communs (centrer un élément, faire des cards identiques à peu de choses près etc)
+
+Pour créer un mixin on utilise le @mixin, et pour l'appeler on utilise le @include.
+
+```scss
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards {
+    @include flex-center
+}
+```
+
+Il y a quand même une petite particularité avec les mixins, on peut leur donner des paramètres pour changer quelques éléments facilement (une couleur, une direction d'éléments, une typo etc)
+
+```scss
+@mixin flex-center($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+.cards {
+    @include flex-center(column)
+}
+``` 
+
+Ici par exemple, nos cards seront en colones grâce à cet argument.
+
+Voici un exemple concret de l'utilisation des mixins (qui ici ne sert à rien car toutes de la même couleur)
+
+```md
+![Texte alternatif](./code.png)
+```
