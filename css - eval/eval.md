@@ -340,4 +340,132 @@ On peut également combiner les collections avec des boucles ce qui permet par e
 
 ## Qu'est-ce qu'une boucle ?
 
-Une boucles en SCSS est similaire aux boucles dans les autres langages, il en existe plusieurs
+Les boucles en SCSS permettent de générer du CSS automatiquement. @for est utilisé pour un nombre précis, @each pour parcourir une liste ou une map, et @while pour une condition.
+
+### @for (boucle avec compteur)
+
+Quand on connait le nombre de répétitions, on utilise le @for
+
+```scss
+@for $i from 1 through 3 {
+  .box-#{$i} {
+    width: 10px * $i;
+  }
+}
+
+
+.box-1 { width: 10px; }
+.box-2 { width: 20px; }
+.box-3 { width: 30px; }
+```
+
+On peut aussi utiliser to au lieu de through, to exclut la fin et through l'inclus (ici c'est de 1 à 3 inclus)
+
+### @each (boucle sur collection)
+
+On l'utilise quand on parcourt une collection
+
+Avec liste
+
+```scss
+$colors: red, blue, green;
+
+@each $color in $colors {
+  .text-#{$color} {
+    color: $color;
+  }
+}
+```
+
+Avec map
+
+```scss
+$colors: (
+  primary: blue,
+  danger: red
+);
+
+@each $name, $color in $colors {
+  .btn-#{$name} {
+    background: $color;
+  }
+}
+```
+
+Quand on utilise les listes on fait une seule variable et quand on utilise une map on fait clé + valeur.
+
+### @while (boucle condition)
+
+On l'utilise pour boucler quand une condition est toujours vraie
+
+```scss
+$i: 1;
+
+@while $i <= 3 {
+  .item-#{$i} {
+    width: 10px * $i;
+  }
+  $i: $i + 1;
+}
+```
+
+Ici, tant que la variable i est inférieur ou égale à 3, on fait une interpolation sur la classe item (on crée le scss pour la classe item-1, item-2 et item-3) et pour éviter la boucle infinie, on incrémente i de 1 à chaque exécution.
+
+# 12. Multi-fichiers
+
+## Qu'est-ce que les multi-fichiers ?
+
+Le système multi-fichiers permet d’organiser le code SCSS en plusieurs fichiers partiels. On utilise @use pour importer un fichier et @forward pour regrouper plusieurs fichiers dans un seul point d’entrée.
+
+Si tout est dans le même fichier, c'est illisible alors que si on découpe c'est beaucoup plus clair et compréhensible.
+
+### @use
+
+Par exemple, dans style.scss :
+
+```scss
+@use 'index';
+
+.button {
+  color: index.$primary;
+}
+```
+
+Ici on peut donc utiliser la variable $primary qui se trouve dans le fichier index.
+
+### @forward
+
+Par exemple dans _index.scss : 
+
+```scss
+@forward 'variables';
+@forward 'mixins';
+```
+
+Ici on regroupe les fichiers variables et mixins dans le fichier index (donc la variable récupérée par le @use juste avant est récupérée de index qui lui même la récupère dans variables)
+
+# 13. Conditions
+
+## Qu'est-ce que les conditions ?
+
+Une condition en SCSS est basée sur le même principe que les conditions dans les autres langages. Elle renvoie si elle est vraie ou fausse et en fonction, elle exécute le code qu'elle contient ou elle passe à la condition suivante/le code qui suit s'il n'y a pas d'autre condition.
+
+```scss
+@mixin theme($mode) {
+  @if $mode == 'dark' {
+    background: #1a1a1a;
+    color: white;
+  } @else if $mode == 'light' {
+    background: white;
+    color: #1a1a1a;
+  } @else {
+    background: grey;
+  }
+}
+```
+
+Ici on a un exemple de chaque condition, le @if qui vérifie donc juste si la variable $mode est égale à 'dark', si c'est vrai le background passe en noir et la couleur du texte en blanc.
+
+Le @else if c'est si la première condition n'est pas vraie on vérifie celle ci (ça évite la répétition de if consécutifs), donc si la variable $mode est égale à 'light' on passe le background en blanc et le texte en noir.
+
+Enfin, le @else dit, si aucune des autre conditions n'est vraie on met le background en gris.
